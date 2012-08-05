@@ -15,9 +15,9 @@ This is a start, so only the indexeddb api is partially complete.
 
 Before try this examples you need to load the JSDbCore libray in your application.
 Try this:
-<pre>
+<pre><!-- Load the script in your web app
 	<script type="text/javascript" src="path_to_jsdbcore.js_file"></script>
-</pre>
+--></pre>
 
 Replace the path_to_jsdbcore.js_file for the path to the JSDbCore.js file.
 
