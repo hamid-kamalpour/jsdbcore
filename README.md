@@ -44,7 +44,7 @@ A three line insert api. Aditionally you can setup a callback like this:
 
 Let's find a record in the database. assuming that the record we are looking for, is an orange tree:
 <pre>
-	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'}); //Create a new model
+	var model = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
 	
 	//Set a callback afterFind. pass a param with an array of models found.
 	modelTree.afterFind = function (contactsFound) {
@@ -54,13 +54,13 @@ Let's find a record in the database. assuming that the record we are looking for
 	
 	};
 
-	modelTree.dbcriteria.addCondition ({name: 'Orange Tree'}); // Add a condition.
+	modelTree.dbcriteria.addCondition ( { name: 'Orange Tree' } ); // Add a condition passing the attribute to search and the value.
 
 	modelTree.findAllByCriteria(); // Find by the criteria conditions.			
 
 </pre>
 
-Simple, isn't ?. Aditionally you have a lot of options like a SQL 'LIKE' statemant, inside objects search and others features.
+Simple, isn't ?. Aditionally you have a lot of options like a SQL 'LIKE' statement, inside objects search and others features.
 
 ## Documentation 
 
