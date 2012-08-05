@@ -8,10 +8,18 @@ enabling web apps to run totally offline.
 
 This is a start, so only the indexeddb api is partially complete.
 
-*This technologies are experimental, so could apper some bugs and the api change with the time.
+*This technologies are experimental, so could apper some bugs and the api change with the time.<br>
 *Check the browser compatibility before try.
 
 ## QuickStart
+
+Before try this examples you need to load the JSDbCore libray in your application.
+Try this:
+<pre>
+	<script type="text/javascript" src="path_to_jsdbcore.js_file"></script>
+</pre>
+
+Replace the path_to_jsdbcore.js_file for the path to the JSDbCore.js file.
 
 #### Setup your database
 
@@ -29,14 +37,16 @@ Create a store for the trees and another for the animals.
 So, lets code, for now we will just create the trees store:
 
 <pre>
-// this is the configuration object, set this to configure your appp
+// this is the configuration object, set this to configure your app
 JSDbCore.defaultConfig = {
+	
 	//the databases array contain a item for each database intance, 
 	//so with this you could have more than one database running async.
 	databases: [
 		{
 			name: 'forest', //name of the database
 			version: 1,  //version of the database, this is very important, see bellow for better explanation
+			
 			stores: [ //like databases array, stores has an item for each store in db.
 				{
 					name: 'trees' // store name
@@ -95,8 +105,9 @@ Let's find a record in the database. assuming that the record we are looking for
 			alert(contactsFound[i].attributes.name + ' Found'); //Show an alert for each model found
 	
 	};
-
-	modelTree.dbcriteria.addCondition ( { name: 'Orange Tree' } ); // Add a condition passing the attribute to search and the value.
+	
+	// Add a condition passing the attribute to search and the value.
+	modelTree.dbcriteria.addCondition ( { name: 'Orange Tree' } ); 
 
 	modelTree.findAllByCriteria(); // Find by the criteria conditions.			
 
