@@ -109,10 +109,10 @@ Let's find a record in the database. assuming that the record we are looking for
 	var model = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
 	
 	//Set a callback afterFind. pass a param with an array of models found.
-	modelTree.afterFind = function (contactsFound) {
+	modelTree.afterFind = function (treesFound) {
 
-		for(var i in contactsFound) 
-			alert(contactsFound[i].attributes.name + ' Found'); //Show an alert for each model found
+		for(var i in treesFound) 
+			alert(treesFound[i].attributes.name + ' Found'); //Show an alert for each model found
 	
 	};
 	
