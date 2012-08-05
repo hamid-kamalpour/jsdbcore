@@ -8,8 +8,8 @@ enabling a new dimension for web apps that will run totally offline, finishing w
 
 This is a start, so only the indexeddb api is parciatially complete.
 
-*This technologies are experimental, so could apper some bugs, and the api could change.
-** Check the brownser compatibility before try.
+*This technologies are experimental, so could apper some bugs, and the api could change.<br>
+*Check the brownser compatibility before try.
 ## Documentation 
 
 The documentation isn't complete, but a parcial copy is in the repositories.
