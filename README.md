@@ -82,7 +82,7 @@ true will overwrite, false(default) will mantain the old store.
 Inserting a tree in the forest database.
 
 ```js
-	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'}); //Create a new model
+	var modelTree = JSDbCore.Model.New({store: 'trees', database: 'forest'}); //Create a new model
 	modelTree.attributes = { name : 'Apple Tree' }; //Set the attributes
 	modelTree.save(); //Save in database
 ```
@@ -90,7 +90,7 @@ Inserting a tree in the forest database.
 A three line insert api. Aditionally you can setup a callback like this:
 
 ```js
-	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'});
+	var modelTree = JSDbCore.Model.New({store: 'trees', database: 'forest'});
 	modelTree.attributes = { name : 'Apple Tree' };
 	
 	modelTree.afterSave = function () { // Set a callback.
@@ -106,7 +106,7 @@ A three line insert api. Aditionally you can setup a callback like this:
 
 Let's find a record in the database. assuming that the record we are looking for, is an orange tree:
 ```js
-	var model = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
+	var modelTree = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
 	
 	//Set a callback afterFind. pass a param with an array of models found.
 	modelTree.afterFind = function (treesFound) {
@@ -125,6 +125,13 @@ Let's find a record in the database. assuming that the record we are looking for
 
 Simple, isn't ?. Aditionally you have a lot of options like a SQL 'LIKE' statement, inside objects search and others features.
 
+####Delete example
+```js
+var modelTree = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
+				
+modelTree.key = key; //key of the record
+modelTree.delete(); //delete the record
+```
 ## Documentation 
 
 The documentation isn't complete, but a incomplete copy is in the repositories.
