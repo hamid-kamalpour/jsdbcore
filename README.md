@@ -1,6 +1,6 @@
 # JSDbCore
 
-A full client-side javascript database.
+A full client-side javascript database library.
 
 JSDbCore is a library created to simplify new Html5 javascript database API's.<br>
 It uses Html5 technologies like IndexedDb and WebSql to implement a client-side complete database, 
