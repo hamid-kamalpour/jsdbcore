@@ -1,3 +1,35 @@
+# JSDbCore
+
+A full client-side javascript database library.
+
+JSDbCore is a library created to simplify the new Html5 javascript database API's.<br>
+It uses Html5 technologies like IndexedDb and WebSql to implement a easier client-side database API,
+enabling web apps to run totally offline.
+
+This is a start, so only the indexeddb api is partially complete.
+
+*This technologies are experimental, so could apper some bugs and the api change with the time.<br>
+*Check the browser compatibility before try.
+
+## QuickStart
+
+### Dependencies
+JSDbCore needs jquery to work, so include this in your project
+
+```html
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+```
+After you can continue with the getting started.
+
+### Getting Started
+Before try this examples you need to load the JSDbCore library in your application.
+Try this:
+
+````html
+	<script type="text/javascript" src="path_to_jsdbcore.js"></script>
+````
+
+Replace the path_to_jsdbcore.js for the path to the JSDbCore.js file.
 
 #### Setup your database
 
