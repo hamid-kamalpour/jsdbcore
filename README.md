@@ -2,13 +2,13 @@
 
 A full client-side javascript database library.
 
-JSDbCore is a library created to simplify new Html5 javascript database API's.<br>
-It uses Html5 technologies like IndexedDb and WebSql to implement a easier client-side database API, 
+JSDbCore is a library created to simplify the new Html5 javascript database API's.<br>
+It uses Html5 technologies like IndexedDb and WebSql to implement a easier client-side database API,
 enabling web apps to run totally offline.
 
 This is a start, so only the indexeddb api is partially complete.
 
-*This technologies are experimental, so could apper some bugs, and the api could change.<br>
+*This technologies are experimental, so could apper some bugs and the api change with the time.
 *Check the browser compatibility before try.
 
 ## QuickStart
@@ -25,7 +25,7 @@ Inserting a tree in the forest database.
 	modelTree.save(); //Save in database
 </pre>
 
-A three line insert. Aditionally you can setup a callback like this:
+A three line insert api. Aditionally you can setup a callback like this:
 
 <pre>
 	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'});
@@ -42,7 +42,7 @@ A three line insert. Aditionally you can setup a callback like this:
 
 #### Find example
 
-Let's find a record in the database. assuming that the record that we are looking for is an orange tree:
+Let's find a record in the database. assuming that the record we are looking for, is an orange tree:
 <pre>
 	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'}); //Create a new model
 	
@@ -60,12 +60,12 @@ Let's find a record in the database. assuming that the record that we are lookin
 
 </pre>
 
-Simple isn't ?. Aditionally you have a lot of options like a SQL 'LIKE', inside objects search and others.
+Simple, isn't ?. Aditionally you have a lot of options like a SQL 'LIKE' statemant, inside objects search and others features.
 
 ## Documentation 
 
-The documentation isn't complete, but a parcial copy is in the repositories.
-To see a example, download and execute the index.html example. 
+The documentation isn't complete, but a incomplete copy is in the repositories.
+To see an example, download and execute the index.html inside example. 
 
 Inside index.html is a script configuring a database, inserting a record, deleting and using the findAll
 and findAllByCriteria methods.
