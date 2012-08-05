@@ -1,30 +1,8 @@
-# JSDbCore
-
-A full client-side javascript database library.
-
-JSDbCore is a library created to simplify the new Html5 javascript database API's.<br>
-It uses Html5 technologies like IndexedDb and WebSql to implement a easier client-side database API,
-enabling web apps to run totally offline.
-
-This is a start, so only the indexeddb api is partially complete.
-
-*This technologies are experimental, so could apper some bugs and the api change with the time.<br>
-*Check the browser compatibility before try.
-
-## QuickStart
-
-Before try this examples you need to load the JSDbCore libray in your application.
-Try this:
-<pre><!-- Load the script in your web app
-	<script type="text/javascript" src="path_to_jsdbcore.js_file"></script>
---></pre>
-
-Replace the path_to_jsdbcore.js_file for the path to the JSDbCore.js file.
 
 #### Setup your database
 
 The first thing you have to do is setup your database configuration.
-Lest create a database that will be used in the following examples.
+Let's create a database that will be used in the following examples.
 This examples use as base a noSQL database, if you want to know more how objects are storage in a database, 
 search for noSQL and indexedDb
 
@@ -36,7 +14,7 @@ Create a store for the trees and another for the animals.
 
 So, lets code, for now we will just create the trees store:
 
-<pre>
+```js
 // this is the configuration object, set this to configure your app
 JSDbCore.defaultConfig = {
 	
@@ -56,7 +34,7 @@ JSDbCore.defaultConfig = {
 		}
 	]
 }
-</pre>
+```
 
 This is a basic configuration. Optionally you can add callbacks like afterOpen and errorOnOpen 
 and attributes like overwrite and type(indexeddb default).
@@ -71,15 +49,15 @@ true will overwrite, false(default) will mantain the old store.
 
 Inserting a tree in the forest database.
 
-<pre>
+```js
 	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'}); //Create a new model
 	modelTree.attributes = { name : 'Apple Tree' }; //Set the attributes
 	modelTree.save(); //Save in database
-</pre>
+```
 
 A three line insert api. Aditionally you can setup a callback like this:
 
-<pre>
+```js
 	var model = JSDbCore.Model.New({store: 'trees', database: 'forest'});
 	modelTree.attributes = { name : 'Apple Tree' };
 	
@@ -90,12 +68,12 @@ A three line insert api. Aditionally you can setup a callback like this:
 	};
 	
 	modelTree.save();
-</pre>
+```
 
 #### Find example
 
 Let's find a record in the database. assuming that the record we are looking for, is an orange tree:
-<pre>
+```js
 	var model = JSDbCore.Model.New( { store: 'trees', database: 'forest' } ); //Create a new model
 	
 	//Set a callback afterFind. pass a param with an array of models found.
@@ -111,7 +89,7 @@ Let's find a record in the database. assuming that the record we are looking for
 
 	modelTree.findAllByCriteria(); // Find by the criteria conditions.			
 
-</pre>
+```
 
 Simple, isn't ?. Aditionally you have a lot of options like a SQL 'LIKE' statement, inside objects search and others features.
 
