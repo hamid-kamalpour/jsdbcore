@@ -6,7 +6,7 @@ JSDbCore is a library created to simplify new Html5 javascript database API's.<b
 It uses Html5 technologies like IndexedDb and WebSql to implement a client-side complete database, 
 enabling a new dimension for web apps that will run totally offline, finishing with the server-side depencie.
 
-This is a start, so only the indexeddb api is parciatially complete.
+This is a start, so only the indexeddb api is partially complete.
 
 *This technologies are experimental, so could apper some bugs, and the api could change.<br>
 *Check the brownser compatibility before try.
