@@ -2,7 +2,7 @@
 
 A full client-side javascript database library.
 
-JSDbCore is a library created to simplify the new Html5 javascript database API's.<br>
+JSDbCore is a library created to simplify the new Html5 javascript asynchronous database API's.<br>
 It uses Html5 technologies like IndexedDb and WebSql to implement a easier client-side database API,
 enabling web apps to run totally offline.
 
@@ -35,10 +35,11 @@ Replace the path_to_jsdbcore.js for the path to the JSDbCore.js file.
 
 The first thing you have to do is setup your database configuration.
 Let's create a database that will be used in the following examples.
-This examples use as base a noSQL database, if you want to know more how objects are storage in a database, 
-search for noSQL and indexedDb
+This examples use as base a noSQL database, if you want to know more how objects are storaged in this database, 
+search for indexedDb and noSQL. 
 
 We will create a database called 'forest', that will store all florest stuffs , like trees, animals, etc.
+
 Inside the database, we criate stores( this is like a 'table' sql, but schemaless and so much flexible ) 
 to store witch type of data separeted, like: 
 
@@ -76,6 +77,32 @@ Why the version is so important?
 Because the only way to change the database stores structure is changing his version.
 Additionally there is a overwrite flag that verify if the store already exist and take a decision,
 true will overwrite, false(default) will mantain the old store.	
+
+#### KeyPath
+The keyPath acts like a SQL Primary Key and has to be unique, this will be the key of the record in the database.
+Keypath value is an attribute of the record that you will try to store.
+
+Supposing that we will try to store a tree, the 'object' will look like this.
+Ex.
+```js
+	treeObject = {
+		name: 'Tree Name', //Lets give this tree a name, you can put every attribute that you want.
+		id: 1 // here we set an attribute called id
+		
+	}
+```	
+
+If you see the store configuration, we set the keypath with the value  'id', so when you save this record the Key of the 
+record will be the 'id' attribute value, that is '1' in this case.
+
+But if you try to add a new record with the same id value, 
+the new record will not be saved because already exist one record with the same key, so we set autoIncrement as true,
+and don't set the attribute relationed with the keyPath value, that is the 'id' attribute.
+
+######Atention
+If no keyPath is defined in the config, the system will use a keyGenerator, but in this case when we find the record to get
+his key to update or delete, the api 'looses' the key value, 
+unlike the keyPath way, that the key comes with the object attrbiutes (this is a bug). 
 
 #### Insert example
 
