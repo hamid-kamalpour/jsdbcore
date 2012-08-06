@@ -164,7 +164,7 @@ modelTree.delete(); //delete the record
 The documentation isn't complete, but a incomplete copy is in the repositories.
 To see an example, download and execute the index.html inside example. 
 
-Inside index.html is a script configuring a database, inserting a record, deleting and using the findAll
+Inside index.html exist a script configuring a database, inserting a record, deleting and using the findAll
 and findAllByCriteria methods.
 
 Use this and the getting started pdf as a guide while the official documentation isn't released.
