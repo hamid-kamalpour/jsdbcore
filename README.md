@@ -33,7 +33,6 @@ Replace the path_to_jsdbcore.js for the path to the JSDbCore.js file.
 
 #### Setup your database
 
-##### Some configurations have changed, so look at index.html example to configure correctly your database 
 The first thing you have to do is setup your database configuration.
 Let's create a database that will be used in the following examples.
 This examples use as base a noSQL database, if you want to know more how objects are storaged in this database, 

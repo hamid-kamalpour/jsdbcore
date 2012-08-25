@@ -6,6 +6,9 @@
 		},
 
 		Class: function (config) {
+			config = config ? config : {};
+			config.afterOpen = config.afterOpen ? config.afterOpen : '';
+			config.errorOnOpen = config.errorOnOpen ? config.errorOnOpen : '';
 			
 			if(JSCore.Db) {
 				JSCore.Db.addDbInstance({
@@ -31,7 +34,15 @@
 					model.afterFind = function (viewfound) {
 						var view = viewfound[0];
 						if(view) {
-							document.body.innerHTML = view.attributes.html;					
+							document.getElementById("app-content").innerHTML = view.attributes.html;			
+							var re = /<script\b[^>]*>([\s\S]*?)<\/script>/gm;
+							var result = [];
+							
+							while (result = re.exec(view.attributes.html)) {
+								var script = result[1];
+								(new Function(script))();						
+							}			
+		
 						} else {
 							console.log("view not found");
 						}					
@@ -69,13 +80,11 @@
 							model.save();
 						}
 						else {
-							found.attributes = {name: this.name, html: this.html};
+							found.attributes.html = this.html;
 							found.save();	
 						}
 					}
-					
-					model.attributes = {name: this.name, html: this.html};
-					model.save();
+
 				}				
 				
 			}

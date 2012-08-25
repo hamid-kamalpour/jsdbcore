@@ -7,10 +7,7 @@
 
 		<script src="example-plugins/jquery.js"></script>
 		<script src="jscore/JSCore.js"></script>
-	
-		
-		
-		
+
 		<!-- some plugins of exemple dont make diference -->
 		<script src="example-plugins/jui/js/jquery-ui-1.8.22.custom.min.js"></script>
 		<link type="text/css" href="example-plugins/jui/css/custom-theme/jquery-ui-1.8.22.custom.css" rel="Stylesheet" />	
@@ -41,23 +38,14 @@
 									//the keyPath option sets a param to act like a SQL Primary Key. 
 									//this will be better explained later
 									keyPath: 'id',
-									
 									autoIncrement: true //auto increment the keyPath
 								},
 											
 								//this array contain each index of the store. attr is the key of the store and options set some configurations
 								index: [
-									{
-										attr: 'name',
-										options: {unique: false}
-									},
-									{
-										attr: 'phone',
-										options: {unique: false}
-									}
+									{ attr: 'name', options: {unique: false} },
+									{ attr: 'phone', options: {unique: false}	}
 								],
-								// flag if store already exist
-								overwrite: true	
 							}
 						],
 						
@@ -98,11 +86,18 @@
 			            ModuleClass.init(defaultConfig);
 			        
 			        }
+			    },
+			    {
+			    	name: "mvccore",
+					onLoad: function (ModuleClass) {
+						if(JSCore.Db) {
+							ModuleClass.init();						
+						}
+					}
 			    }
 			];			
-						
-			JSCore.config = {modules: modules};
-			JSCore.loadModules();
+
+			JSCore.loadModules({ modules: modules });
 				
 			// Exemple functions
 			function addToList (obj) {
@@ -191,29 +186,33 @@
 		</script>
 	</head>
 	<body>
-		<div class="header">
-			<center><p><h1>AddressBook using JSDbCore</h1></p>
-			<div class="hr"></div></center>
-			
+		<div id="app-title">
 		</div>
-		<div class="content">
-			
-			<div class="controls">
-				<label for="iSearch">Search </label><input type="text" id="iSearch" style="width: 100%;" />
-				<div class="addnew" style="margin-top: 40px;">
-					<h3>Add new Contact</h3>
+		<div id="app-content">
+			<div class="header">
+				<center><p><h1>AddressBook using JSDbCore</h1></p>
+				<div class="hr"></div></center>
+			</div>
+			<div class="content">
+				<div class="controls">
+					<label for="iSearch">Search </label><input type="text" id="iSearch" style="width: 100%;" />
+					<div class="addnew" style="margin-top: 40px;">
+						<h3>Add new Contact</h3>
+						<div class="hr"></div>
+						<p><label for="name">Name </label><input type="text" id="name" style="width: 100%;" /></p>
+						<p><label for="phone">Phone </label><input type="text" id="phone" style="width: 100%;"/></p>
+						<p><button class="actionAdd">Add</button></p>
+					</div>
+				</div>
+				<h3 style="margin-top: 40px;">Contacts</h3>
 					<div class="hr"></div>
-					<p><label for="name">Name </label><input type="text" id="name" style="width: 100%;" /></p>
-					<p><label for="phone">Phone </label><input type="text" id="phone" style="width: 100%;"/></p>
-					<p><button class="actionAdd">Add</button></p>
+				<div class="containerContacts">
+					<ul class="listContacts">
+					</ul>
 				</div>
 			</div>
-			<h3 style="margin-top: 40px;">Contacts</h3>
-				<div class="hr"></div>
-			<div class="containerContacts">
-				<ul class="listContacts">
-				</ul>
-			</div>
-		</div>
+		</div>	
+		<div id="app-footer">
+		</div>	
 	</body>
 </html>
