@@ -1,0 +1,14 @@
+(function (undefined) {
+
+	var MvcClass = window.JSCore.Mvc = {
+		
+		New: function () {
+			return this.Class();
+		}
+		
+		Class: function () {
+			
+		}	
+	}
+
+})();
