@@ -1,5 +1,7 @@
 # JSDbCore
 
+Website: <a href="http://guimeframework.wordpress.com/">Guime Framework</a>
+
 A full client-side javascript database library.
 
 JSDbCore is a library created to simplify the new Html5 javascript asynchronous database API's.<br>
