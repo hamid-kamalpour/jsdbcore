@@ -7,8 +7,8 @@
 
 		Class: function (config) {
 			config = config ? config : {};
-			config.afterOpen = config.afterOpen ? config.afterOpen : '';
-			config.errorOnOpen = config.errorOnOpen ? config.errorOnOpen : '';
+			config.onReady = config.onReady ? config.onReady : '';
+			config.onError = config.onError ? config.onError : '';
 			
 			if(JSCore.Db) {
 				JSCore.Db.addDbInstance({
@@ -24,8 +24,8 @@
 					],
 					
 					version: 1,
-					afterOpen: config.afterOpen,
-					errorOnOpen: config.errorOnOpen
+					afterOpen: config.onReady,
+					errorOnOpen: config.onError
 				});
 				
 				this.redir = function (viewname) {
@@ -69,31 +69,30 @@
 			
 			if(JSCore.Db) {
 				
-				this.add = function () {
-					var model = JSCore.Db.Model.New({store: "struct", database: "controller"});
+				this.add = function (afterAdd) {
 					
+					var model = JSCore.Db.Model.New({store: "struct", database: "controller"});
 					model.dbcriteria.addCondition({name: this.name});
 					
 					model.afterFind = function (found) {
 						if(found.length === 0) {
-							model.attributes = {name: this.name, html: this.html};
-							model.save();
+							this.save();
+							this.afterSave = afterAdd;
 						}
 						else {
-							found.attributes.html = this.html;
-							found.save();	
+							found[0].attributes.html = this.attributes.html;
+							found[0].save();	
+							found[0].afterSave = afterAdd;
 						}
 					}
-
+					model.attributes = {html: this.html, name: this.name};
+					model.findByCriteria();
 				}				
-				
 			}
 			else {
 				console.log("JCore DB Module is required.");	
 			}			
-					
 		}
-
 	}
 
 	var MvcClass = {

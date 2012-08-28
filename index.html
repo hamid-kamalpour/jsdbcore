@@ -17,7 +17,7 @@
 		
 		<!-- config and init JSDbCore -->
 		<script>
-
+			
 			// default configuration object
 			var defaultConfig = {
 			
@@ -55,7 +55,7 @@
 						
 						//this callback will be executed after the database is open and ready to use
 						afterOpen: function () {
-							var modelContacts = JSCore.Db.Model.New({store: 'contacts', database: 'address_book'});
+							/*var modelContacts = guime.model.New({store: 'contacts', database: 'address_book'});
 							modelContacts.afterFind = function (contactsFound) {
 							
 								for(var i in contactsFound) {
@@ -66,7 +66,7 @@
 							
 							};
 							
-							modelContacts.findAll();
+							modelContacts.findAll();*/
 			
 						},
 				
@@ -80,25 +80,41 @@
 			
 			var modules = [
 			    {
-			        name: "dbcore",
-			        onLoad: function (ModuleClass) {
+			    	name: "db",
+			      onLoad: function (ModuleClass) {
 			                    
-			            ModuleClass.init(defaultConfig);
+			      	ModuleClass.init(defaultConfig);
 			        
-			        }
+			    	}
 			    },
 			    {
-			    	name: "mvccore",
+		    	 	name: "model"
+			    },
+			    {
+			    	name: "controller",
 					onLoad: function (ModuleClass) {
-						if(JSCore.Db) {
-							ModuleClass.init();						
-						}
+						ModuleClass.run({onReady: function () {
+
+
+						}});						
+
+					}
+			    },
+			    {
+			    	name: "view",
+					onLoad: function (ModuleClass) {
+						var view = ModuleClass.New();
+						view.name = "script";
+						view.html = '<h1>ScriptTest</h1><script>alert("scriptexec")<\/script>';
+						view.add(function () {
+							guime.controller.redir("script");			
+						});
 					}
 			    }
 			];			
 
-			JSCore.loadModules({ modules: modules });
-				
+			window.guime.loadModules({ modules: modules });
+			/*	
 			// Exemple functions
 			function addToList (obj) {
 
@@ -181,7 +197,7 @@
 				
 				$("select, input, button").uniform();
 			
-			});
+			});*/
 		
 		</script>
 	</head>

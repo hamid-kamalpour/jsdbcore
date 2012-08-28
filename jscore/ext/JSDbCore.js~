@@ -934,7 +934,7 @@
 		
 		Class : function (config) {
 			
-			var currentDatabase = DbClass.currentInstance.getDbInstance(config.database);
+			var currentDatabase = DbInstance.getDbInstance(config.database);
 			this.config = config;
 			this.store = config.store;
 			this.attributes = {};
@@ -1011,7 +1011,7 @@
 		
 		}
 	}
-
+	
 	var DbClass = {
 
 		New : function () {
@@ -1040,19 +1040,14 @@
 				return this.databases[dbconfig.name];
 			}
 			
-			this.Model = Model;
-			this.DBCriteria = DBCriteria;
-			this.DbClass = DbClass;
-			this.DbClass.currentInstance = this;
-			window.JSCore.Db = this;
+			window.guime.model = Model;
+			window.guime.dbcriteria = DBCriteria;
 	
 		},	
-		
-		currentInstance: null
-		
+
 	}
 	
-	DbClass.New();
+	var DbInstance = window.guime.db = DbClass.New();
 	
 	
 	

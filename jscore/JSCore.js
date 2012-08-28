@@ -1,8 +1,8 @@
 (function (undefined) {
 	
-	var _JSCore = window.JSCore;	
-	
-	var JSCoreClass = {
+	var _guime = window.guime;	
+
+	var GuimeClass = {
 		New: function () {
 			return new this.Class();
 		},
@@ -14,15 +14,29 @@
 			this.loadModules = function (config) {
 				var extPath = "http://localhost/jsdbcore/jscore/ext";
 				var modulesPath = {
-					"mvccore": {
-							src: extPath + '/JSMvcCore.js',
-							className: 'Mvc',
-							dependencies: ['dbcore'],	
+					"model": {
+							src: extPath + '/ModelClass.js',
+							className: 'model',
+							dependencies: ['db']
 						},						
-					"dbcore": {
-							src: extPath + '/JSDbCore.js',
-							className: 'Db'
+					"db": {
+							src: extPath + '/DatabaseClass.js',
+							className: 'db'
+						},				
+					"controller": {
+							src: extPath + '/ControllerClass.js',
+							className: 'controller',
+							dependencies: ['db', 'model', 'view']
+						},				
+					"view": {
+							src: extPath + '/ViewClass.js',
+							className: 'view',
+							dependencies: ['db', 'model', 'controller']
 						}				
+				}
+				
+				for(var i in config.modules) {
+					this.loadQueue.push(config.modules[i].name);	
 				}
 
 				for(var i in config.modules) {
@@ -30,7 +44,7 @@
 					var load = modulesPath[module.name];
 					var head = document.head;
 					
-					if(JSCore.loadedModules.indexOf(module.name) !== -1) {
+					if(guime.loadedModules.indexOf(module.name) !== -1) {
 						continue;	
 					}
 					
@@ -40,9 +54,9 @@
 					scriptElement.id = module.name;
 					
 					scriptElement.onload = (function (module, load) {
-							
+							module.onLoad = module.onLoad ? module.onLoad : function () {};
 							var resolveModule =  function () {
-								var moduleKey = JSCore.loadQueue.indexOf(module.name);
+								var moduleKey = guime.loadQueue.indexOf(module.name);
 									
 								//resolve dependencies.
 								if(load.dependencies)	{
@@ -51,11 +65,11 @@
 										var dependModule = load.dependencies[d];
 										
 										//if dependencie is not loaded
-										if(JSCore.loadedModules.indexOf(dependModule) === -1) {
+										if(guime.loadedModules.indexOf(dependModule) === -1) {
 											
 											//if the module is not in the queue, load him.
-											if(JSCore.loadQueue.indexOf(dependModule) === -1) {
-												JSCore.loadModules({modules: [{name: dependModule, onLoad: function () {}}]});
+											if(guime.loadQueue.indexOf(dependModule) === -1) {
+												guime.loadModules({modules: [{name: dependModule, onLoad: function () {}}]});
 											}
 											
 											var dependOnload = document.getElementById(dependModule).onload;
@@ -74,9 +88,9 @@
 									}	
 								}
 														
-								module.onLoad.apply(JSCore, [JSCore[load.className]]);
-								JSCore.loadedModules.push(module.name);
-								JSCore.loadQueue.splice(moduleKey, 1);							
+								module.onLoad.apply(guime, [guime[load.className]]);
+								guime.loadedModules.push(module.name);
+								guime.loadQueue.splice(moduleKey, 1);							
 							};
 							
 							return resolveModule;
@@ -84,21 +98,21 @@
 						})(module, load);
 					
 					head.appendChild(scriptElement);
-					this.loadQueue.push(config.modules[i].name);
+	
 				}				
 			}
 			
 			this.noConflict = function (newName) {
 				
-				window[newName] = JSCore;
-				window.JSCore = _JSCore;
+				window[newName] = guime;
+				window.guime = _guime;
 			
 			}
 			
 		}	
 	}
-	var JSCore;
-	window.JSCore = JSCore = JSCoreClass.New();
+	var guime;
+	window.guime = guime = GuimeClass.New();
 	
 	
 
