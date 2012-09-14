@@ -3,57 +3,29 @@
 	<head>
 		<title>JSDbCore - Address Book</title>
 		
-		<!-- Script load -->
-
-		<script src="example-plugins/jquery.js"></script>
 		<script src="jscore/JSCore.js"></script>
-
-		<!-- some plugins of exemple dont make diference -->
-		<script src="example-plugins/jui/js/jquery-ui-1.8.22.custom.min.js"></script>
-		<link type="text/css" href="example-plugins/jui/css/custom-theme/jquery-ui-1.8.22.custom.css" rel="Stylesheet" />	
-		<script src="example-plugins/uniform/jquery.uniform.js" type="text/javascript"></script>
-		<link rel="stylesheet" href="example-plugins/uniform/css/uniform.default.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="example-plugins/csstemplate/style.css" type="text/css" media="screen" charset="utf-8" />
-		
-		<!-- config and init JSDbCore -->
 		<script>
 			
-			// default configuration object
+		
 			var defaultConfig = {
-			
-				// each item inside this array will create or open a database
 				databases: 
 				[
 					{					
-						name: 'address_book', // the name of the database to open or create
-						
-						//each item inside this array represent a store to be create or update
+						name: 'address_book',
 						stores: [
 							{								
-								name: 'contacts', // the store name. store are like a SQL table without a schema
-								
-								// an object with options
+								name: 'contacts',
 								options: {
-								
-									//the keyPath option sets a param to act like a SQL Primary Key. 
-									//this will be better explained later
 									keyPath: 'id',
-									autoIncrement: true //auto increment the keyPath
+									autoIncrement: true
 								},
-											
-								//this array contain each index of the store. attr is the key of the store and options set some configurations
 								index: [
 									{ attr: 'name', options: {unique: false} },
 									{ attr: 'phone', options: {unique: false}	}
 								],
 							}
 						],
-						
-						//this is the version of the database.
-						//the only way to update a database structure is setting his version.
 						version: 4,
-						
-						//this callback will be executed after the database is open and ready to use
 						afterOpen: function () {
 							/*var modelContacts = guime.model.New({store: 'contacts', database: 'address_book'});
 							modelContacts.afterFind = function (contactsFound) {
@@ -69,8 +41,6 @@
 							modelContacts.findAll();*/
 			
 						},
-				
-						//if an error ocurs this will be called. 
 						errorOnOpen : function () {
 							console.log('SetVersion error');
 						}
@@ -93,23 +63,31 @@
 			    {
 			    	name: "controller",
 					onLoad: function (ModuleClass) {
-						ModuleClass.run({onReady: function () {
-
-
-						}});						
-
+						ModuleClass.run({
+							onReady: function () {
+								
+							}
+						});						
 					}
 			    },
 			    {
 			    	name: "view",
 					onLoad: function (ModuleClass) {
 						var view = ModuleClass.New();
-						view.name = "script";
-						view.html = '<h1>ScriptTest</h1><script>alert("scriptexec")<\/script>';
-						view.add(function () {
-							guime.controller.redir("script");			
-						});
+						view.html = "load teste";
+						view.name = "load";
+						view.add(function () {guime.controller.redir("load");});
 					}
+			    },
+			    {
+					name: "uniform",
+					src: "example-plugins/uniform/jquery.uniform.js",
+					dependencies: ["jquery"]			    
+			    },
+			    {
+					name: "jui",
+					src: "example-plugins/jui/js/jquery-ui-1.8.22.custom.min.js",
+					dependencies: ["jquery"]			    
 			    }
 			];			
 
@@ -200,6 +178,12 @@
 			});*/
 		
 		</script>
+		
+		<!-- some plugins of exemple dont make diference -->
+		<link type="text/css" href="example-plugins/jui/css/custom-theme/jquery-ui-1.8.22.custom.css" rel="Stylesheet" />	
+		<link rel="stylesheet" href="example-plugins/uniform/css/uniform.default.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="example-plugins/csstemplate/style.css" type="text/css" media="screen" charset="utf-8" />
+		
 	</head>
 	<body>
 		<div id="app-title">
